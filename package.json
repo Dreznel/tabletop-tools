@@ -18,8 +18,8 @@
       "test": "run-s -n build-css test-js",
       "test-js": "react-scripts test --env=jsdom",
 
-      "build-css": "node-less-chokidar src && mv src/less/*.css src/style",
-      "watch-css": "node-less-chokidar src --watch"
+      "build-css": "node-less-chokidar src/less",
+      "watch-css": "node-less-chokidar src/less --watch"
   },
   "devDependencies": {
       "node-less-chokidar": "^0.3.0",
