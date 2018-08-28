@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import TabletopToolsSidebar from './Sidebar';
-import './style/App.css';
+import './less/App.css';
 
 class App extends Component {
   render() {

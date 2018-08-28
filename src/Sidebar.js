@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import './style/Sidebar.css';
+import './less/Sidebar.css';
 
 const routes = [
   {
@@ -34,7 +34,7 @@ const TabletopToolsSidebar = () => (
             key={index}
             path={route.path}
             exact={route.exact}
-            component={route.siebar}
+            component={route.sidebar}
           />
         ))}
       </div>
