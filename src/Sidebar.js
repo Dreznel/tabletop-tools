@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import './style/Sidebar.css';
 
 const routes = [
   {
@@ -18,14 +18,8 @@ const routes = [
 
 const TabletopToolsSidebar = () => (
   <Router>
-    <div style={{ display: "flex" }}>
-      <div
-        style={{
-          padding: "10px",
-          width: "40%",
-          background: "#f0f0f0"
-        }}
-      >
+    <div className="tabletop-tools-sidebar" style={{ display: "flex" }}>
+      <div>
         <ul style={{ listStyleType: "none", padding: 0}}>
           <li>
             <Link to="/">Home</Link>

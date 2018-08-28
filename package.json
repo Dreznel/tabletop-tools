@@ -5,13 +5,24 @@
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.5",
-    "react-router-dom": "4.3.1"
+    "react-router-dom": "4.3.1",
+    "react-scripts": "1.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+      "start": "npm run build-css && run-p -ncr watch-css start-js",
+      "start-js": "react-scripts start",
+
+      "build": "run-s -n build-css build-js",
+      "build-js": "react-scripts build",
+
+      "test": "run-s -n build-css test-js",
+      "test-js": "react-scripts test --env=jsdom",
+
+      "build-css": "node-less-chokidar src && mv src/less/*.css src/style",
+      "watch-css": "node-less-chokidar src --watch"
+  },
+  "devDependencies": {
+      "node-less-chokidar": "^0.3.0",
+      "npm-run-all": "^4.1.3"
   }
 }
