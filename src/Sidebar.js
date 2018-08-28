@@ -34,7 +34,7 @@ const TabletopToolsSidebar = () => (
             key={index}
             path={route.path}
             exact={route.exact}
-            component={route.siebar}
+            component={route.sidebar}
           />
         ))}
       </div>
