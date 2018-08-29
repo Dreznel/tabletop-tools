@@ -9,11 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <TabletopToolsSidebar/>
-        <p className="App-intro">
-          Hello, world.
-        </p>
         <HitPointTrackerButtonClass/>
-
       </div>
     );
   }
