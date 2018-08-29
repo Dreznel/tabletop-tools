@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import TabletopToolsSidebar from './Sidebar';
-import ApparrentlyThisNameDoesNotMatter from './HitPointTracker';
+import { HitPointTrackerButtonClass } from './HitPointTracker';
 import './less/App.css';
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
         <p className="App-intro">
           Hello, world.
         </p>
-        <ApparrentlyThisNameDoesNotMatter/>
+        <HitPointTrackerButtonClass/>
 
       </div>
     );
