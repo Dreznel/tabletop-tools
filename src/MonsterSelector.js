@@ -48,14 +48,19 @@ class MonsterSelector extends Component {
 
   render() {
     let hitPointTracker;
-    if( this.state.mosnterId >=2 ) {
-      hitPointTracker =
-          <HitPointTracker
-              name={this.state.tempMonsterName}
-              maxHp={this.state.tempMonsterMaxHp}
-              currentHp={this.state.tempMonsterCurrentHp}
-            />;
-    }
+
+    hitPointTracker =
+        <HitPointTracker
+            name={this.state.tempMonsterName}
+            maxHp={this.state.tempMonsterMaxHp}
+            currentHp={this.state.tempMonsterCurrentHp}
+            handleModifyHp= { (changeValue) => {
+                let newCurrentHp = this.state.tempMonsterCurrentHp + changeValue;
+                this.setState( { tempMonsterCurrentHp: newCurrentHp });
+              }
+            }
+        />;
+
 
     return (
       <div>
@@ -76,6 +81,7 @@ class MonsterSelector extends Component {
           }}
           onChange = { this.handleSelectionChange('monsterId') }
         />
+
         {hitPointTracker}
 
       </div>

@@ -14,9 +14,7 @@ class HitPointTrackerButtonClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: props.name,
-      maxHp: props.maxHp,
-      currentHp: props.maxHp
+      currentHp: parseInt(this.props.maxHp)
     }
     this.addHp = this.addHp.bind(this);
     this.subtractHp = this.subtractHp.bind(this);
@@ -34,19 +32,17 @@ class HitPointTrackerButtonClass extends Component {
 
 
   addHp(event) {
-    this.setState( { currentHp: this.state.currentHp + 1 } );
+    this.props.handleModifyHp(+1);
   }
 
   subtractHp(event) {
-    this.setState( { currentHp: this.state.currentHp - 1 } );
+    this.props.handleModifyHp(-1);
   }
-
-
 
   render() {
     return (
       <div className = "hp-tracker">
-        <p> HP for <b> { this.state.name } </b>: { this.state.currentHp }/{ this.state.maxHp } </p>
+        <p> HP for <b> { this.props.name } </b>: { this.props.currentHp }/{ this.props.maxHp } </p>
 
         <Button
           variant="fab"
