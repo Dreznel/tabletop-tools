@@ -37,53 +37,5 @@ function HitPointTrackerFunction(props) {
   )
 }
 
-class HitPointTrackerButtonClass extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentHp: parseInt(this.props.maxHp)
-    }
-    this.addHp = this.addHp.bind(this);
-    this.subtractHp = this.subtractHp.bind(this);
-  }
-
-  addHp(event) {
-    this.props.handleModifyHp(+1);
-  }
-
-  subtractHp(event) {
-    this.props.handleModifyHp(-1);
-  }
-
-  render() {
-    return (
-      <div className = "hp-tracker">
-        <p> HP for <b> { this.props.name } </b>: { this.props.currentHp }/{ this.props.maxHp } </p>
-
-        <Button
-          variant="fab"
-          color = "primary"
-          aria-label="Remove"
-          className={ this.props.button }
-          onClick={ this.subtractHp }
-          >
-          <RemoveIcon/>
-        </Button>
-
-        <Button
-          variant="fab"
-          color = "primary"
-          aria-label="Add"
-          className={ this.props.button }
-          onClick={ this.addHp }
-          >
-          <AddIcon/>
-        </Button>
-      </div>
-    )
-  }
-
-}
-
-export default HitPointTrackerButtonClass;
+export default HitPointTrackerFunction;
 export { HitPointTrackerFunction } ;
