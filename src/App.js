@@ -10,6 +10,13 @@ class App extends Component {
     return (
       <div className="App">
         <TabletopToolsSidebar/>
+        <br/>
+        <MonsterSelector/>
+        <br/>
+        <MonsterSelector/>
+        <br/>
+        <MonsterSelector/>
+        <br/>
         <MonsterSelector/>
       </div>
     );
