@@ -9,6 +9,8 @@ import TextField from '@material-ui/core/TextField'
 
 import {HitPointTrackerFunction} from './HitPointTracker'
 
+import { getModifyHpAction } from './Actions'
+
 class MonsterSelector extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +46,11 @@ class MonsterSelector extends Component {
   }
 
   onClickAdd = () => {
-      this.handleModifyHp(+1);
+      this.props.onModifyHp(
+        { monsters: { 1: { name: "DefaultName", maxHp: 5, currentHp:5 }}},
+        getModifyHpAction(1, 1)
+     );
+      //this.handleModifyHp(+1);
   }
 
   fetchMonsterStats(monsterId) {

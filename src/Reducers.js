@@ -10,12 +10,12 @@ State structure:
 }
 */
 
-function reducer(state, action) {
+function reducer(state = { monsters: { 1: { name: "DefaultName", maxHp: 5, currentHp:5 }}}, action) {
   switch(action.type) {
     case "MODIFY_HP":
       let newState = Object.assign({}, state);
-      newState.monsters[action.trackerId][currentHp] =
-      newState.monsters[action.trackerId][currentHp] - action.hpChange;
+      newState.monsters[action.trackerId]["currentHp"] =
+      newState.monsters[action.trackerId]["currentHp"] - action.hpChange;
       return newState;
     default:
       return state;
