@@ -7,7 +7,7 @@ import './less/App.css';
 
 class App extends Component {
 
-  constructor() {
+  constructor(props) {
     super(props);
   }
 
@@ -19,12 +19,6 @@ class App extends Component {
         <MonsterSelector
           onModifyHp = { this.props.onModifyHp }
         />
-        <br/>
-        <MonsterSelector/>
-        <br/>
-        <MonsterSelector/>
-        <br/>
-        <MonsterSelector/>
       </div>
     );
   }

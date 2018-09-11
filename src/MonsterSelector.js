@@ -8,6 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 
 import {HitPointTrackerFunction} from './HitPointTracker'
+import HitPointTrackerConst from './HitPointTracker'
 
 import { getModifyHpAction } from './Actions'
 
@@ -68,8 +69,6 @@ class MonsterSelector extends Component {
    }
 
   render() {
-    let hitPointTracker;
-
     return (
       <div>
         <TextField
@@ -97,6 +96,8 @@ class MonsterSelector extends Component {
             onClickAdd={ this.onClickAdd }
             onClickSubtract={ this.onClickSubtract }
         />
+
+        <HitPointTrackerConst/>
 
       </div>
     )

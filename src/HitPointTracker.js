@@ -9,6 +9,52 @@ import classNames from 'classnames' //I have no idea what this does.
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 
+//redux
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => {
+  return {
+    monster: state.monsters["0"]
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    modifyHp: () =>
+      dispatch({
+        type: "MODIFY_HP",
+        trackerId: "0",
+        hpChange: 1
+      })
+  }
+}
+
+const HitPointTrackerConst = ( { monster, modifyHp } ) => {
+  return (
+    <div className = "hp-tracker">
+      <p> HP for <b> { monster.name } </b>: { monster.currentHp }/{ monster.maxHp } </p>
+
+      <Button
+        variant="fab"
+        color = "primary"
+        aria-label="Remove"
+        onClick={ modifyHp }
+        >
+        <RemoveIcon/>
+      </Button>
+
+      <Button
+        variant="fab"
+        color = "primary"
+        aria-label="Add"
+        onClick={ modifyHp }
+        >
+        <AddIcon/>
+      </Button>
+    </div>
+  )
+}
+
 function HitPointTrackerFunction(props) {
   return (
     <div className = "hp-tracker">
@@ -37,5 +83,8 @@ function HitPointTrackerFunction(props) {
   )
 }
 
-export default HitPointTrackerFunction;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HitPointTrackerConst)
 export { HitPointTrackerFunction } ;
