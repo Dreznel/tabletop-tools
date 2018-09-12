@@ -88,7 +88,7 @@ class MonsterSelector extends Component {
           }}
           onChange = { this.handleSelectionChange('monsterId') }
         />
-
+{/*
         <HitPointTrackerFunction
             name={this.state.tempMonsterName}
             maxHp={this.state.tempMonsterMaxHp}
@@ -96,6 +96,7 @@ class MonsterSelector extends Component {
             onClickAdd={ this.onClickAdd }
             onClickSubtract={ this.onClickSubtract }
         />
+      */}
 
         <HitPointTrackerConst/>
 
