@@ -9,6 +9,10 @@ import classNames from 'classnames' //I have no idea what this does.
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 
+//Bad Design
+import AddHpButton from './AddHpButton'
+import SubtractHpButton from './SubtractHpButton'
+
 //redux
 import { connect } from 'react-redux'
 
@@ -29,58 +33,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const HitPointTrackerConst = ( { monster, modifyHp } ) => {
-  return (
-    <div className = "hp-tracker">
-      <p> HP for <b> { monster.name } </b>: { monster.currentHp }/{ monster.maxHp } </p>
-
-      <Button
-        variant="fab"
-        color = "primary"
-        aria-label="Remove"
-        onClick={ modifyHp }
-        >
-        <RemoveIcon/>
-      </Button>
-
-      <Button
-        variant="fab"
-        color = "primary"
-        aria-label="Add"
-        onClick={ modifyHp }
-        >
-        <AddIcon/>
-      </Button>
-    </div>
-  )
-}
-
-function HitPointTrackerConstFunction( {monster, modifyHp} ) {
-  return (
-    <div className = "hp-tracker">
-      <p> HP for <b> { monster.name } </b>: { monster.currentHp }/{ monster.maxHp } </p>
-
-      <Button
-        variant="fab"
-        color = "primary"
-        aria-label="Remove"
-        onClick={ modifyHp }
-        >
-        <RemoveIcon/>
-      </Button>
-
-      <Button
-        variant="fab"
-        color = "primary"
-        aria-label="Add"
-        onClick={ modifyHp }
-        >
-        <AddIcon/>
-      </Button>
-    </div>
-  )
-}
-
 class HitPointTrackerClass extends React.Component {
   constructor(props) {
     super(props);
@@ -91,56 +43,14 @@ class HitPointTrackerClass extends React.Component {
       <div className = "hp-tracker">
         <p> HP for <b> { this.props.monster.name } </b>: {  this.props.monster.currentHp }/{  this.props.monster.maxHp } </p>
 
-        <Button
-          variant="fab"
-          color = "primary"
-          aria-label="Remove"
-          onClick={  this.props.modifyHp }
-          >
-          <RemoveIcon/>
-        </Button>
 
-        <Button
-          variant="fab"
-          color = "primary"
-          aria-label="Add"
-          onClick={  this.props.modifyHp }
-          >
-          <AddIcon/>
-        </Button>
+        <SubtractHpButton/>
+        <AddHpButton/>
       </div>
     )
   }
 }
-/*
-function HitPointTrackerFunction(props) {
-  return (
-    <div className = "hp-tracker">
-      <p> HP for <b> { props.name } </b>: { props.currentHp }/{ props.maxHp } </p>
 
-      <Button
-        variant="fab"
-        color = "primary"
-        aria-label="Remove"
-        className={ props.button }
-        onClick={ props.onClickSubtract }
-        >
-        <RemoveIcon/>
-      </Button>
-
-      <Button
-        variant="fab"
-        color = "primary"
-        aria-label="Add"
-        className={ props.button }
-        onClick={ props.onClickAdd }
-        >
-        <AddIcon/>
-      </Button>
-    </div>
-  )
-}
-*/
 export default connect(
   mapStateToProps,
   mapDispatchToProps
