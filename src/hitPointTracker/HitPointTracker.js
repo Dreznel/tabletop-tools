@@ -30,16 +30,13 @@ class HitPointTrackerClass extends React.Component {
   render() {
     return (
       <div className = "hp-tracker">
-        <p> HP for
-          <b>
-            { this.props.monsterList[this.props.trackerId].name }
-          </b>:
+        <p> HP for <b>{ this.props.monsterList[this.props.trackerId].name }</b>:
           {  this.props.monsterList[this.props.trackerId].currentHp }
           /
           {  this.props.monsterList[this.props.trackerId].maxHp }
         </p>
-        <SubtractHpButton/>
-        <AddHpButton/>
+        <SubtractHpButton trackerId={this.props.trackerId}/>
+        <AddHpButton trackerId={this.props.trackerId}/>
       </div>
     )
   }

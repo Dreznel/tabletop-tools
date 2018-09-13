@@ -7,12 +7,12 @@ import RemoveIcon from '@material-ui/icons/Remove'
 //redux
 import { connect } from 'react-redux'
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
   return {
     modifyHp: () =>
       dispatch({
         type: "MODIFY_HP",
-        trackerId: "0",
+        trackerId: props.trackerId,
         hpChange: 1
       })
   }

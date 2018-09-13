@@ -7,18 +7,12 @@ import RemoveIcon from '@material-ui/icons/Remove'
 //redux
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state) => {
-  return {
-    monster: state.monsters["0"]
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
   return {
     modifyHp: () =>
       dispatch({
         type: "MODIFY_HP",
-        trackerId: "0",
+        trackerId: props.trackerId,
         hpChange: -1
       })
   }
@@ -37,4 +31,4 @@ function SubtractHpButton({monster, modifyHp}) {
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubtractHpButton)
+export default connect(null, mapDispatchToProps)(SubtractHpButton)
