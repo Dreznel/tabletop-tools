@@ -27,34 +27,32 @@ function reducer(state = { monsters: { 0: { name: "DefaultNameFromHere", maxHp: 
       newState.monsters[action.trackerId]["currentHp"] + action.hpChange;
       return newState;
     */
-      return (
-        {
-          monsters: {
-            0: {
-              name: "It's a mutability problem",
-              maxHp: 10,
-              currentHp: state.monsters[action.trackerId]["currentHp"] + action.hpChange
-            }
-          }
-        }
-      )
+      let returnObject = {...state};
+      returnObject.monsters = monsterTrackerIdReducer(state.monsters, action);
+      return returnObject;
     default:
       return state;
   }
 }
-/*
-function reducer2(state = { name: "DefaultNameFromHere", maxHp: 5, currentHp:5 }, action) {
+
+function monsterTrackerIdReducer(state = { 0: { name: "DefaultNameFromTrackerIdReducer", maxHp: 8, currentHp:8 }}, action) {
   switch(action.type) {
     case "MODIFY_HP":
-      updatedCurrentHp =
-      newState.monsters = newMonsters;
-      newState.monsters[action.trackerId]["currentHp"] =
-      newState.monsters[action.trackerId]["currentHp"] + action.hpChange;
-      return newState;
+      let returnObject = {...state};
+      returnObject[action.trackerId] = monsterReducer(state[action.trackerId], action);
+      return returnObject;
     default:
       return state;
   }
 }
-*/
+
+function monsterReducer( state = { name: "DefaultNameFromMonsterReducer", maxHp: 7, currentHp: 7}, action) {
+  switch(action.type) {
+    case "MODIFY_HP":
+      return Object.assign({}, state, { currentHp: state.currentHp + action.hpChange })
+    default:
+      return state;
+  }
+}
 
 export default reducer;
