@@ -11,7 +11,22 @@ import  reducer from './Reducers'
 import { Provider } from 'react-redux';
 
 
-const store = createStore(reducer);
+const store = createStore(reducer,
+  {
+    monsters: {
+      0: {
+          name: "PreloadedStateMonster1",
+          maxHp: 5,
+          currentHp:5
+      },
+      1: {
+        name: "PreloadedStateMonster2",
+        maxHp: 40,
+        currentHp:40
+      }
+    }
+  }
+);
 
 const render = () =>
   ReactDOM.render(

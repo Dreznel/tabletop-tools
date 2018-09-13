@@ -8,6 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 
 import HitPointTracker from '../hitPointTracker/HitPointTracker'
+import HitPointTrackerManager from './HitPointTrackerManager'
 
 import { getModifyHpAction } from '../actions/Actions'
 
@@ -33,24 +34,6 @@ class MonsterSelector extends Component {
 
   importMonster(event) {
     this.fetchMonsterStats(this.state.monsterId);
-  }
-
-  //I feel like there's a more elegant way to write this.
-  handleModifyHp(changeValue) {
-      let newCurrentHp = this.state.tempMonsterCurrentHp + changeValue;
-      this.setState( { tempMonsterCurrentHp: newCurrentHp });
-    }
-
-  onClickSubtract = () => {
-    this.handleModifyHp(-1);
-  }
-
-  onClickAdd = () => {
-      this.props.onModifyHp(
-        { monsters: { 1: { name: "DefaultName", maxHp: 5, currentHp:5 }}},
-        getModifyHpAction(1, 1)
-     );
-      //this.handleModifyHp(+1);
   }
 
   fetchMonsterStats(monsterId) {
@@ -87,17 +70,8 @@ class MonsterSelector extends Component {
           }}
           onChange = { this.handleSelectionChange('monsterId') }
         />
-{/*
-        <HitPointTrackerFunction
-            name={this.state.tempMonsterName}
-            maxHp={this.state.tempMonsterMaxHp}
-            currentHp={this.state.tempMonsterCurrentHp}
-            onClickAdd={ this.onClickAdd }
-            onClickSubtract={ this.onClickSubtract }
-        />
-      */}
 
-        <HitPointTracker/>
+        <HitPointTrackerManager/>
 
       </div>
     )

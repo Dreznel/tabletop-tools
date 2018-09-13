@@ -7,12 +7,6 @@ import RemoveIcon from '@material-ui/icons/Remove'
 //redux
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state) => {
-  return {
-    monster: state.monsters["0"]
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     modifyHp: () =>
@@ -37,4 +31,4 @@ function AddHpButton({monster, modifyHp}) {
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddHpButton)
+export default connect(null, mapDispatchToProps)(AddHpButton)

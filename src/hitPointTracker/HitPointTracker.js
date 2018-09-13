@@ -18,19 +18,8 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
   return {
-    monster: state.monsters["0"]
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    modifyHp: () =>
-      dispatch({
-        type: "MODIFY_HP",
-        trackerId: "0",
-        hpChange: 1
-      })
-  }
+    monsterList : state.monsters
+  };
 }
 
 class HitPointTrackerClass extends React.Component {
@@ -41,7 +30,14 @@ class HitPointTrackerClass extends React.Component {
   render() {
     return (
       <div className = "hp-tracker">
-        <p> HP for <b> { this.props.monster.name } </b>: {  this.props.monster.currentHp }/{  this.props.monster.maxHp } </p>
+        <p> HP for
+          <b>
+            { this.props.monsterList[this.props.trackerId].name }
+          </b>:
+          {  this.props.monsterList[this.props.trackerId].currentHp }
+          /
+          {  this.props.monsterList[this.props.trackerId].maxHp }
+        </p>
         <SubtractHpButton/>
         <AddHpButton/>
       </div>
@@ -51,5 +47,5 @@ class HitPointTrackerClass extends React.Component {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(HitPointTrackerClass)
