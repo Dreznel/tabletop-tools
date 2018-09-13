@@ -10,8 +10,8 @@ import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 
 //Bad Design
-import AddHpButton from './AddHpButton'
-import SubtractHpButton from './SubtractHpButton'
+import AddHpButton from '../buttons/AddHpButton'
+import SubtractHpButton from '../buttons/SubtractHpButton'
 
 //redux
 import { connect } from 'react-redux'
@@ -42,8 +42,6 @@ class HitPointTrackerClass extends React.Component {
     return (
       <div className = "hp-tracker">
         <p> HP for <b> { this.props.monster.name } </b>: {  this.props.monster.currentHp }/{  this.props.monster.maxHp } </p>
-
-
         <SubtractHpButton/>
         <AddHpButton/>
       </div>

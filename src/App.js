@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import TabletopToolsSidebar from './Sidebar';
-import { HitPointTrackerButtonClass } from './HitPointTracker';
-import MonsterSelector from './MonsterSelector'
+import MonsterSelector from './hitPointTracker/MonsterSelector'
 import './less/App.css';
 
 class App extends Component {

@@ -7,10 +7,9 @@ import InputLabel from '@material-ui/core/InputLabel'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 
-import {HitPointTrackerFunction} from './HitPointTracker'
-import HitPointTrackerConst from './HitPointTracker'
+import HitPointTracker from '../hitPointTracker/HitPointTracker'
 
-import { getModifyHpAction } from './Actions'
+import { getModifyHpAction } from '../actions/Actions'
 
 class MonsterSelector extends Component {
   constructor(props) {
@@ -98,7 +97,7 @@ class MonsterSelector extends Component {
         />
       */}
 
-        <HitPointTrackerConst/>
+        <HitPointTracker/>
 
       </div>
     )
