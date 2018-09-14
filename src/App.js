@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import TabletopToolsSidebar from './Sidebar';
-import MonsterHitPointTrackerManager from './hitPointTracker/MonsterHitPointTrackerManager'
+import HitPointTracker from './hitPointTracker/HitPointTracker'
 import './less/App.css';
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
       <div className="App">
         <TabletopToolsSidebar/>
         <br/>
-        <MonsterHitPointTrackerManager/>
+        <HitPointTracker/>
       </div>
     );
   }

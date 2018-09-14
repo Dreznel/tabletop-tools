@@ -7,9 +7,6 @@ import InputLabel from '@material-ui/core/InputLabel'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 
-import HitPointTracker from '../hitPointTracker/HitPointTracker'
-import HitPointTrackerManager from './HitPointTrackerManager'
-
 class MonsterSelector extends Component {
   constructor(props) {
     super(props);
