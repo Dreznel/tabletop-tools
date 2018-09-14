@@ -2,15 +2,15 @@
 State structure:
 
 {
-  monsters: {
-    trackerId1: { name: "Monster1", maxHp: X, currentHp: X }
-    trackerId2: { name: "Monster2", maxHp: Y, currentHp: Y-D }
-  }
+  monsters: [
+     { name: "Monster1", maxHp: X, currentHp: X },
+     { name: "Monster2", maxHp: Y, currentHp: Y-D }
+  ]
   other: { ... }
 }
 */
 
-function reducer(state = { monsters: { 0: { name: "DefaultNameFromHere", maxHp: 5, currentHp:5 }}}, action) {
+function reducer(state, action) {
   let returnObject = {...state};
   switch(action.type) {
     case "MODIFY_HP":
@@ -31,22 +31,21 @@ function reducer(state = { monsters: { 0: { name: "DefaultNameFromHere", maxHp: 
       returnObject.monsters = monsterTrackerIdReducer(state.monsters, action);
       return returnObject;
     case "ADD_MONSTER":
-      returnObject.monsters["2"] = {
-        name: action.monsterName,
-        maxHp: action.monsterMaxHp,
-        currentHp: action.monsterCurrentHp
-      }
+        returnObject.monsters = monsterTrackerIdReducer(state.monsters, action);
       return returnObject;
     default:
       return state;
   }
 }
 
-function monsterTrackerIdReducer(state = { 0: { name: "DefaultNameFromTrackerIdReducer", maxHp: 8, currentHp:8 }}, action) {
+function monsterTrackerIdReducer(state, action) {
+  let returnObject = [...state];
   switch(action.type) {
     case "MODIFY_HP":
-      let returnObject = {...state};
-      returnObject[action.trackerId] = monsterReducer(state[action.trackerId], action);
+      returnObject[action.monsterIndex] = monsterReducer(state[action.monsterIndex], action);
+      return returnObject;
+    case "ADD_MONSTER":
+      returnObject.push(monsterReducer(null, action)); //Technically redundant, but it fits our design a bit better.
       return returnObject;
     default:
       return state;
@@ -57,6 +56,8 @@ function monsterReducer( state = { name: "DefaultNameFromMonsterReducer", maxHp:
   switch(action.type) {
     case "MODIFY_HP":
       return Object.assign({}, state, { currentHp: state.currentHp + action.hpChange })
+    case "ADD_MONSTER":
+      return Object.assign({}, {name: action.monsterName, maxHp: action.monsterMaxHp, currentHp: action.monsterCurrentHp});
     default:
       return state;
   }

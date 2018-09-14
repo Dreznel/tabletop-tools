@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch, props) => {
     modifyHp: () =>
       dispatch({
         type: "MODIFY_HP",
-        trackerId: props.trackerId,
+        monsterIndex: props.monsterIndex,
         hpChange: -1
       })
   }

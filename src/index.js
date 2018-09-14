@@ -13,18 +13,19 @@ import { Provider } from 'react-redux';
 
 const store = createStore(reducer,
   {
-    monsters: {
-      0: {
+    monsters:
+      [
+        {
           name: "PreloadedStateMonster1",
           maxHp: 5,
           currentHp:5
-      },
-      1: {
-        name: "PreloadedStateMonster2",
-        maxHp: 40,
-        currentHp:40
-      }
-    }
+        },
+        {
+          name: "PreloadedStateMonster2",
+          maxHp: 40,
+          currentHp:40
+        }
+      ]
   }
 );
 
@@ -32,7 +33,7 @@ const render = () =>
   ReactDOM.render(
     <Provider store={store}>
       <App
-        onModifyHp={() => store.dispatch({type: "MODIFY_HP", hpChange: 1, trackerId: 1})}
+        onModifyHp={() => store.dispatch({type: "MODIFY_HP", hpChange: 1, monsterIndex: 1})}
       />
     </Provider>,
     document.getElementById('root')

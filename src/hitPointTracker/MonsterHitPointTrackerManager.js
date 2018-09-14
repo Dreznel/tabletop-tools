@@ -16,8 +16,8 @@ class MonsterHitPointTrackerManager extends Component {
 
   render() {
     let renderList = [];
-    for(var monsterTrackerId in this.props.monsterList) {
-      renderList.push(<MonsterHitPointTracker trackerId={monsterTrackerId}/>)
+    for(var i=0; i<this.props.monsterList.length; i++) {
+      renderList.push(<MonsterHitPointTracker monsterIndex={i}/>)
     }
     return renderList;
   }

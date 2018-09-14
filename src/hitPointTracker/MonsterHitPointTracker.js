@@ -30,13 +30,13 @@ class MonsterHitPointTracker extends React.Component {
   render() {
     return (
       <div className = "hp-tracker">
-        <p> HP for <b>{ this.props.monsterList[this.props.trackerId].name }</b>:
-          {  this.props.monsterList[this.props.trackerId].currentHp }
+        <p> HP for <b>{ this.props.monsterList[this.props.monsterIndex].name }</b>:
+          {  this.props.monsterList[this.props.monsterIndex].currentHp }
           /
-          {  this.props.monsterList[this.props.trackerId].maxHp }
+          {  this.props.monsterList[this.props.monsterIndex].maxHp }
         </p>
-        <SubtractHpButton trackerId={this.props.trackerId}/>
-        <AddHpButton trackerId={this.props.trackerId}/>
+        <SubtractHpButton monsterIndex={this.props.monsterIndex}/>
+        <AddHpButton monsterIndex={this.props.monsterIndex}/>
       </div>
     )
   }

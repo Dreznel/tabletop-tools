@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch, props) => {
         dispatch({
           type: "ADD_MONSTER",
           monsterName: monsterName,
-          monsterMaxHp:monsterMaxHp,
-          monsterCurrentHp: monsterCurrentHp
+          monsterMaxHp: monsterMaxHp,
+          monsterCurrentHp: monsterCurrentHp,
         })
     }
   )

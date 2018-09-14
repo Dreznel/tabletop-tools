@@ -1,7 +1,7 @@
 export function getModifyHpAction(hpMod, id) {
   return ({
     type:"MODIFY_HP",
-    trackerId:id,
+    monsterIndex:id,
     hpChange:hpMod
   })
 }
