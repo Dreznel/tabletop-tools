@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
   };
 }
 
-class HitPointTrackerClass extends React.Component {
+class MonsterHitPointTracker extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -45,4 +45,4 @@ class HitPointTrackerClass extends React.Component {
 export default connect(
   mapStateToProps,
   null
-)(HitPointTrackerClass)
+)(MonsterHitPointTracker)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import HitPointTracker from './HitPointTracker'
+import MonsterHitPointTracker from './MonsterHitPointTracker'
 
 import { connect } from 'react-redux'
 
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-class HitPointTrackerManager extends Component {
+class MonsterHitPointTrackerManager extends Component {
   constructor(props) {
     super(props);
   }
@@ -17,7 +17,7 @@ class HitPointTrackerManager extends Component {
   render() {
     let renderList = [];
     for(var monsterTrackerId in this.props.monsterList) {
-      renderList.push(<HitPointTracker trackerId={monsterTrackerId}/>)
+      renderList.push(<MonsterHitPointTracker trackerId={monsterTrackerId}/>)
     }
     return renderList;
   }
@@ -26,4 +26,4 @@ class HitPointTrackerManager extends Component {
 export default connect (
   mapStateToProps,
   null
-)(HitPointTrackerManager)
+)(MonsterHitPointTrackerManager)

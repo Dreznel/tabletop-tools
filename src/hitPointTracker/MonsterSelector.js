@@ -10,8 +10,6 @@ import TextField from '@material-ui/core/TextField'
 import HitPointTracker from '../hitPointTracker/HitPointTracker'
 import HitPointTrackerManager from './HitPointTrackerManager'
 
-import { getModifyHpAction } from '../actions/Actions'
-
 class MonsterSelector extends Component {
   constructor(props) {
     super(props);
@@ -70,8 +68,6 @@ class MonsterSelector extends Component {
           }}
           onChange = { this.handleSelectionChange('monsterId') }
         />
-
-        <HitPointTrackerManager/>
 
       </div>
     )
