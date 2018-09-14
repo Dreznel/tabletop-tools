@@ -11,6 +11,7 @@ State structure:
 */
 
 function reducer(state = { monsters: { 0: { name: "DefaultNameFromHere", maxHp: 5, currentHp:5 }}}, action) {
+  let returnObject = {...state};
   switch(action.type) {
     case "MODIFY_HP":
 
@@ -27,8 +28,14 @@ function reducer(state = { monsters: { 0: { name: "DefaultNameFromHere", maxHp: 
       newState.monsters[action.trackerId]["currentHp"] + action.hpChange;
       return newState;
     */
-      let returnObject = {...state};
       returnObject.monsters = monsterTrackerIdReducer(state.monsters, action);
+      return returnObject;
+    case "ADD_MONSTER":
+      returnObject.monsters["2"] = {
+        name: action.monsterName,
+        maxHp: action.monsterMaxHp,
+        currentHp: action.monsterCurrentHp
+      }
       return returnObject;
     default:
       return state;

@@ -7,14 +7,30 @@ import InputLabel from '@material-ui/core/InputLabel'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 
+import { connect } from 'react-redux'
+
+const mapDispatchToProps = (dispatch, props) => {
+  return(
+    {
+      addMonster: ( { monsterName, monsterMaxHp, monsterCurrentHp } ) =>
+        dispatch({
+          type: "ADD_MONSTER",
+          monsterName: monsterName,
+          monsterMaxHp:monsterMaxHp,
+          monsterCurrentHp: monsterCurrentHp
+        })
+    }
+  )
+}
+
 class MonsterSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
       monsterId : 1,
-      tempMonsterName : 'DEFAULT_NAME',
-      tempMonsterMaxHp : '100',
-      tempMonsterCurrentHp : '100'
+      monsterName : 'DEFAULT_NAME',
+      monsterMaxHp : 100,
+      monsterCurrentHp : 100
     };
 
     //Are these lines necessary?
@@ -29,6 +45,7 @@ class MonsterSelector extends Component {
 
   importMonster(event) {
     this.fetchMonsterStats(this.state.monsterId);
+    this.props.addMonster(this.state);
   }
 
   fetchMonsterStats(monsterId) {
@@ -37,9 +54,9 @@ class MonsterSelector extends Component {
      .then(responseData => {                                   //From the JSON, pull out the stuff we need.
        this.setState(
          {
-           tempMonsterName : responseData.name,
-           tempMonsterMaxHp : responseData.hit_points,
-           tempMonsterCurrentHp : responseData.hit_points
+           monsterName : responseData.name,
+           monsterMaxHp : responseData.hit_points,
+           monsterCurrentHp : responseData.hit_points
          }
        )
      })
@@ -71,4 +88,4 @@ class MonsterSelector extends Component {
   }
 }
 
-export default MonsterSelector;
+export default connect(null, mapDispatchToProps)(MonsterSelector);
