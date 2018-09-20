@@ -4,15 +4,10 @@ import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import classNames from 'classnames' //I have no idea what this does.
 
-//Remember that you can name this whatever as long as you import from the right
-//place. That's because the place you're importing from uses "export default," I think.
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
-
 //Bad Design
 import AddHpButton from '../buttons/AddHpButton'
 import SubtractHpButton from '../buttons/SubtractHpButton'
-
+import RemoveMonsterButton from '../buttons/RemoveButton'
 //redux
 import { connect } from 'react-redux'
 
@@ -37,6 +32,7 @@ class MonsterHitPointTracker extends React.Component {
         </p>
         <SubtractHpButton monsterIndex={this.props.monsterIndex}/>
         <AddHpButton monsterIndex={this.props.monsterIndex}/>
+        <RemoveMonsterButton monsterIndex={this.props.monsterIndex}/>
       </div>
     )
   }

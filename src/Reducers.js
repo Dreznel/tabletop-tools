@@ -33,6 +33,9 @@ function reducer(state, action) {
     case "ADD_MONSTER":
         returnObject.monsters = monsterTrackerIdReducer(state.monsters, action);
       return returnObject;
+    case "REMOVE_MONSTER":
+      returnObject.monsters = monsterTrackerIdReducer(state.monsters, action)
+      return returnObject;
     default:
       return state;
   }
@@ -46,6 +49,9 @@ function monsterTrackerIdReducer(state, action) {
       return returnObject;
     case "ADD_MONSTER":
       returnObject.push(monsterReducer(null, action)); //Technically redundant, but it fits our design a bit better.
+      return returnObject;
+    case "REMOVE_MONSTER":
+      returnObject = returnObject.splice(action.monsterIndex);
       return returnObject;
     default:
       return state;
