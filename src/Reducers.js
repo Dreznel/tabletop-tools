@@ -51,7 +51,7 @@ function monsterTrackerIdReducer(state, action) {
       returnObject.push(monsterReducer(null, action)); //Technically redundant, but it fits our design a bit better.
       return returnObject;
     case "REMOVE_MONSTER":
-      returnObject = returnObject.splice(action.monsterIndex);
+      let removedElements = returnObject.splice(action.monsterIndex, 1);
       return returnObject;
     default:
       return state;
