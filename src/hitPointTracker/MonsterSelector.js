@@ -6,7 +6,6 @@ import Input from '@material-ui/core/Input'
 import InputLabel from '@material-ui/core/InputLabel'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
-import MonsterSearch from './MonsterSearch';
 
 import { connect } from 'react-redux'
 
@@ -65,8 +64,7 @@ class MonsterSelector extends Component {
 
   render() {
     return (
-      <div>
-        <MonsterSearch/>
+      <div className = 'monster-selector'>
         <TextField
           label="Monster ID"
           id="simple-start-adornment"

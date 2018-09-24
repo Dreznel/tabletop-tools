@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import MonsterHitPointTrackerManager from './MonsterHitPointTrackerManager'
-import MonsterSelector from './MonsterSelector'
 
 class HitPointTracker extends React.Component {
   constructor(props) {
@@ -10,8 +9,7 @@ class HitPointTracker extends React.Component {
 
   render() {
     return(
-      <div className='hit-point-tracker'>
-        <MonsterSelector/>
+      <div className='hp-tracker'>
         <MonsterHitPointTrackerManager/>
       </div>
     )
