@@ -6,17 +6,32 @@ import Input from '@material-ui/core/Input'
 import InputLabel from '@material-ui/core/InputLabel'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
+import MonsterSearch from './MonsterSearch';
 
-import {HitPointTrackerFunction} from './HitPointTracker'
+import { connect } from 'react-redux'
+
+const mapDispatchToProps = (dispatch, props) => {
+  return(
+    {
+      addMonster: ( { monsterName, monsterMaxHp, monsterCurrentHp } ) =>
+        dispatch({
+          type: "ADD_MONSTER",
+          monsterName: monsterName,
+          monsterMaxHp: monsterMaxHp,
+          monsterCurrentHp: monsterCurrentHp,
+        })
+    }
+  )
+}
 
 class MonsterSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
       monsterId : 1,
-      tempMonsterName : 'DEFAULT_NAME',
-      tempMonsterMaxHp : '100',
-      tempMonsterCurrentHp : '100'
+      monsterName : 'DEFAULT_NAME',
+      monsterMaxHp : 100,
+      monsterCurrentHp : 100
     };
 
     //Are these lines necessary?
@@ -31,20 +46,7 @@ class MonsterSelector extends Component {
 
   importMonster(event) {
     this.fetchMonsterStats(this.state.monsterId);
-  }
-
-  //I feel like there's a more elegant way to write this.
-  handleModifyHp(changeValue) {
-      let newCurrentHp = this.state.tempMonsterCurrentHp + changeValue;
-      this.setState( { tempMonsterCurrentHp: newCurrentHp });
-    }
-
-  onClickSubtract = () => {
-    this.handleModifyHp(-1);
-  }
-
-  onClickAdd = () => {
-      this.handleModifyHp(+1);
+    this.props.addMonster(this.state);
   }
 
   fetchMonsterStats(monsterId) {
@@ -53,19 +55,18 @@ class MonsterSelector extends Component {
      .then(responseData => {                                   //From the JSON, pull out the stuff we need.
        this.setState(
          {
-           tempMonsterName : responseData.name,
-           tempMonsterMaxHp : responseData.hit_points,
-           tempMonsterCurrentHp : responseData.hit_points
+           monsterName : responseData.name,
+           monsterMaxHp : responseData.hit_points,
+           monsterCurrentHp : responseData.hit_points
          }
        )
      })
    }
 
   render() {
-    let hitPointTracker;
-
     return (
       <div>
+        <MonsterSearch/>
         <TextField
           label="Monster ID"
           id="simple-start-adornment"
@@ -84,17 +85,9 @@ class MonsterSelector extends Component {
           onChange = { this.handleSelectionChange('monsterId') }
         />
 
-        <HitPointTrackerFunction
-            name={this.state.tempMonsterName}
-            maxHp={this.state.tempMonsterMaxHp}
-            currentHp={this.state.tempMonsterCurrentHp}
-            onClickAdd={ this.onClickAdd }
-            onClickSubtract={ this.onClickSubtract }
-        />
-
       </div>
     )
   }
 }
 
-export default MonsterSelector;
+export default connect(null, mapDispatchToProps)(MonsterSelector);

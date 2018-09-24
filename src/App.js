@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import TabletopToolsSidebar from './Sidebar';
-import { HitPointTrackerButtonClass } from './HitPointTracker';
-import MonsterSelector from './MonsterSelector'
+import HitPointTracker from './hitPointTracker/HitPointTracker'
 import './less/App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="App">
         <TabletopToolsSidebar/>
         <br/>
-        <MonsterSelector/>
-        <br/>
-        <MonsterSelector/>
-        <br/>
-        <MonsterSelector/>
-        <br/>
-        <MonsterSelector/>
+        <HitPointTracker/>
       </div>
     );
   }
