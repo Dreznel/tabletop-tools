@@ -20,6 +20,8 @@ import { connect } from 'react-redux'
 const styles = theme => ({
   root: {
     width: '100%',
+    height: 800,
+    overflowY: 'auto'
     /*
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
@@ -27,9 +29,7 @@ const styles = theme => ({
     */
   },
   table: {
-    minWidth: 300,
-    maxHeight: 10,
-    overflowY: 'auto'
+    minWidth: 300
   }
 });
 
