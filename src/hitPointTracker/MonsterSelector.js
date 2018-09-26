@@ -105,8 +105,19 @@ class MonsterSelector extends Component {
 
    handleMonsterSelect(contents) {
      let monsterId = parseInt(contents.target.parentNode.childNodes[1].textContent); //Super hacky, but the only way I know as of now to get row data.
-     this.fetchMonsterStats(monsterId);
-     this.props.addMonster(this.state);
+     //this.fetchMonsterStats(monsterId);
+
+     fetch(`http://www.dnd5eapi.co/api/monsters/${monsterId}`) //Call the endpoint, get the HTTP response
+     .then(response => response.json())                        //From the HTTP response, pull out the JSON
+     .then(responseData => {                                   //From the JSON, pull out the stuff we need.
+       this.props.addMonster(
+         {
+           monsterName : responseData.name,
+           monsterMaxHp : responseData.hit_points,
+           monsterCurrentHp : responseData.hit_points
+         }
+       )
+     })
    }
 
   render() {
