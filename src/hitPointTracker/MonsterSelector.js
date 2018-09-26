@@ -63,35 +63,14 @@ class MonsterSelector extends Component {
 
     //Are these lines necessary?
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
-    this.importMonster = this.importMonster.bind(this);
     this.handleMonsterSelect = this.handleMonsterSelect.bind(this);
   }
-
 
   handleSelectionChange = prop => event => {
     this.setState({ [prop]: event.target.value });
   }
 
-  importMonster(event) {
-    this.fetchMonsterStats(this.state.monsterId);
-    this.props.addMonster(this.state);
-  }
-
-  fetchMonsterStats(monsterId) {
-     fetch(`http://www.dnd5eapi.co/api/monsters/${monsterId}`) //Call the endpoint, get the HTTP response
-     .then(response => response.json())                        //From the HTTP response, pull out the JSON
-     .then(responseData => {                                   //From the JSON, pull out the stuff we need.
-       this.setState(
-         {
-           monsterName : responseData.name,
-           monsterMaxHp : responseData.hit_points,
-           monsterCurrentHp : responseData.hit_points
-         }
-       )
-     })
-   }
-
-   fetchMonsterNames() {
+  fetchMonsterNames() {
      fetch('http://www.dnd5eapi.co/api/monsters/')             //Call the endpoint, get the HTTP response
      .then(response => response.json())                        //From the HTTP response, pull out the JSON
      .then(responseData => {                                   //From the JSON, pull out the stuff we need.
@@ -124,24 +103,6 @@ class MonsterSelector extends Component {
     const { classes } = this.props;
     return (
       <div className = 'monster-selector'>
-        <TextField
-          label="Monster ID"
-          id="simple-start-adornment"
-          className={classNames(this.props.margin, this.props.textField)}
-          InputProps={{
-            endAdornment: <Button variant="fab"
-                            color = "secondary"
-                            aria-label="Import"
-                            className={ this.props.button }
-                            onClick={ this.importMonster }
-                            mini
-                          >
-                            <DetailsIcon/>
-                          </Button>,
-          }}
-          onChange = { this.handleSelectionChange('monsterId') }
-        />
-
         <Paper className={classes.root}>
           <Table className={classes.table} >
             <TableHead>
