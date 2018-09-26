@@ -7,8 +7,6 @@
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
-  height: 500px;
-  width: 350px;
 }
 .hp-tracker {
   display: flex;
@@ -17,4 +15,8 @@
   float: left;
   padding-left: 10px;
   padding-top: 20px;
+}
+.remove-monster-button {
+  padding-left: 10px;
+  padding-right: 10px;
 }

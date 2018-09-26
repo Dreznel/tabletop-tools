@@ -25,6 +25,8 @@ function AddHpButton({monster, removeMonster}) {
       color = "primary"
       aria-label="Remove Monster"
       onClick={ removeMonster }
+      className = "remove-monster-button"
+      mini
       >
       <RemoveCircleIcon/>
     </Button>

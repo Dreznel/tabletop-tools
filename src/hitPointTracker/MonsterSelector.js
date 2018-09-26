@@ -58,9 +58,12 @@ class MonsterSelector extends Component {
       monsterNamesObject: []
     };
 
+    this.fetchMonsterNames();
+
     //Are these lines necessary?
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.importMonster = this.importMonster.bind(this);
+    this.onRowClick = this.onRowClick.bind(this);
   }
 
 
@@ -99,9 +102,12 @@ class MonsterSelector extends Component {
      })
    }
 
+   onRowClick() {
+     alert("Row clicked!");
+   }
+
   render() {
     const { classes } = this.props;
-    this.fetchMonsterNames();
     return (
       <div className = 'monster-selector'>
         <TextField
@@ -123,7 +129,7 @@ class MonsterSelector extends Component {
         />
 
         <Paper className={classes.root}>
-          <Table className={classes.table}>
+          <Table className={classes.table} >
             <TableHead>
               <TableRow>
                 <TableCell>Monster Name</TableCell>
@@ -143,7 +149,9 @@ class MonsterSelector extends Component {
                         className={ this.props.button }
                         onClick={ this.importMonster }
                         mini
-                      />
+                      >
+                        <DetailsIcon/>
+                      </Button>
                     </TableCell>
                   </TableRow>
                 )
