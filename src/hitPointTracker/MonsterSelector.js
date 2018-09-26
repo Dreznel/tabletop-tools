@@ -19,7 +19,8 @@ import { connect } from 'react-redux'
 
 const styles = theme => ({
   root: {
-    width: '100%',
+    width: '80%',
+    margin: 'auto',
     height: 800,
     overflowY: 'auto'
     /*
@@ -29,7 +30,7 @@ const styles = theme => ({
     */
   },
   table: {
-    minWidth: 300
+    minWidth: 200
   }
 });
 
@@ -63,7 +64,7 @@ class MonsterSelector extends Component {
     //Are these lines necessary?
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.importMonster = this.importMonster.bind(this);
-    this.onRowClick = this.onRowClick.bind(this);
+    this.handleMonsterSelect = this.handleMonsterSelect.bind(this);
   }
 
 
@@ -102,8 +103,10 @@ class MonsterSelector extends Component {
      })
    }
 
-   onRowClick() {
-     alert("Row clicked!");
+   handleMonsterSelect(contents) {
+     let monsterId = parseInt(contents.target.parentNode.childNodes[1].textContent); //Super hacky, but the only way I know as of now to get row data.
+     this.fetchMonsterStats(monsterId);
+     this.props.addMonster(this.state);
    }
 
   render() {
@@ -133,6 +136,7 @@ class MonsterSelector extends Component {
             <TableHead>
               <TableRow>
                 <TableCell>Monster Name</TableCell>
+                <TableCell>Monster ID</TableCell>
                 <TableCell>Import</TableCell>
               </TableRow>
             </TableHead>
@@ -141,18 +145,8 @@ class MonsterSelector extends Component {
                 return(
                   <TableRow key={monster.name}>
                     <TableCell>{monster.name}</TableCell>
-                    <TableCell>
-                      <Button
-                        variant="fab"
-                        color = "secondary"
-                        aria-label="Import"
-                        className={ this.props.button }
-                        onClick={ this.importMonster }
-                        mini
-                      >
-                        <DetailsIcon/>
-                      </Button>
-                    </TableCell>
+                    <TableCell>{monster.url.slice("http://www.dnd5eapi.co/api/monsters/".length)}</TableCell>
+                    <TableCell onClick={this.handleMonsterSelect}>[Import Button]</TableCell>
                   </TableRow>
                 )
               })}
