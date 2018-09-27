@@ -28,6 +28,7 @@ You will need to have Node.js and the Yarn package manager installed to run this
 * [ReactJS](https://reactjs.org/) - JavaScript Library used
 * [Redux](https://redux.js.org/) - JavaScript Library used
 * [Yarn](https://yarnpkg.com/en/) - Package Management
+* [D&D5e API](http://www.dnd5eapi.co/) - API for gathering monster stats.
 
 ## License
 
