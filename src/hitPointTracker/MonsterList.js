@@ -12,18 +12,16 @@ class MonsterList extends Component {
 
   render() {
     return(
-      <TableBody>
-        {this.props.monsters.map(monster => {
-            return(
-              <TableRow key={monster.name}>
-                <TableCell>{monster.name}</TableCell>
-                <TableCell>{monster.url.slice("http://www.dnd5eapi.co/api/monsters/".length)}</TableCell>
-                <TableCell onClick={this.props.handleMonsterSelect}>[Import Button]</TableCell>
-              </TableRow>
-            )}
-          )
-        }
-      </TableBody>
+      this.props.monsters.map(monster => {
+          return(
+            <TableRow key={monster.name}>
+              <TableCell>{monster.name}</TableCell>
+              <TableCell>{monster.url.slice("http://www.dnd5eapi.co/api/monsters/".length)}</TableCell>
+              <TableCell onClick={this.props.handleMonsterSelect}>[Import Button]</TableCell>
+            </TableRow>
+          )}
+        )
+      
     )
   }
 }

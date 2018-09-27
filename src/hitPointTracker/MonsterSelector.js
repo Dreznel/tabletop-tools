@@ -33,6 +33,8 @@ const styles = theme => ({
   },
   table: {
     minWidth: 200
+  },
+  textField: { //I'm not sure if this is even rigged up correctly.
   }
 });
 
@@ -54,12 +56,7 @@ class MonsterSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      monsterId : 1,
-      monsterName : 'DEFAULT_NAME',
-      monsterMaxHp : 100,
-      monsterCurrentHp : 100,
       monsterNamesObject: [],
-      monsterNamesSelected: [],
       query: ''
     };
 
@@ -68,7 +65,6 @@ class MonsterSelector extends Component {
     //Are these lines necessary?
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.handleMonsterSelect = this.handleMonsterSelect.bind(this);
-    this.updateFilteredView = this.updateFilteredView.bind(this);
   }
 
   fetchMonsterNames() {
@@ -82,17 +78,6 @@ class MonsterSelector extends Component {
          }
        )
      })
-   }
-
-   updateFilteredView = (query) => {
-     this.setState(
-       {
-         query: query,
-         monsterNamesSelected : this.state.monsterNamesObject.filter(row =>
-           row['name'].toLowerCase().includes(this.state.query.toLowerCase())
-         )
-       }
-     )
    }
 
   handleSelectionChange = prop => event => {
@@ -122,10 +107,13 @@ class MonsterSelector extends Component {
       <div className = 'monster-selector'>
         <Paper className={classes.root}>
           <TextField
+            className = {classes.textField}
             hintText='Query'
             floatingLabelText='Search'
             value={this.state.query}
-            onChange={event => {this.updateFilteredView(event.target.value)} }
+            onChange= { event => this.setState({
+              query: event.target.value
+            })}
             floatingLabelFixed
           />
           <Table className={classes.table} >
@@ -136,24 +124,15 @@ class MonsterSelector extends Component {
                 <TableCell>Import</TableCell>
               </TableRow>
             </TableHead>
-            <MonsterList
-              monsters = {this.state.monsterNamesSelected}
-              handleMonsterSelect = {this.handleMonsterSelect}
-            />
-            {/*
             <TableBody>
-              {this.state.monsterNamesSelected.map(monster => {
-                return(
-                  <TableRow key={monster.name}>
-                    <TableCell>{monster.name}</TableCell>
-                    <TableCell>{monster.url.slice("http://www.dnd5eapi.co/api/monsters/".length)}</TableCell>
-                    <TableCell onClick={this.handleMonsterSelect}>[Import Button]</TableCell>
-                  </TableRow>
+              <MonsterList
+                monsters = {
+                  this.state.monsterNamesObject.filter(row =>
+                  row['name'].toLowerCase().includes(this.state.query.toLowerCase())
                 )}
-              )
-            }
+                handleMonsterSelect = {this.handleMonsterSelect}
+              />
             </TableBody>
-          */}
           </Table>
         </Paper>
       </div>
