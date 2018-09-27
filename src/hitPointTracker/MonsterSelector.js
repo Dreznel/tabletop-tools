@@ -17,6 +17,8 @@ import {withStyles} from '@material-ui/core/styles'
 
 import { connect } from 'react-redux'
 
+import MonsterList from './MonsterList'
+
 const styles = theme => ({
   root: {
     width: '80%',
@@ -56,7 +58,9 @@ class MonsterSelector extends Component {
       monsterName : 'DEFAULT_NAME',
       monsterMaxHp : 100,
       monsterCurrentHp : 100,
-      monsterNamesObject: []
+      monsterNamesObject: [],
+      monsterNamesSelected: [],
+      query: ''
     };
 
     this.fetchMonsterNames();
@@ -64,10 +68,7 @@ class MonsterSelector extends Component {
     //Are these lines necessary?
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.handleMonsterSelect = this.handleMonsterSelect.bind(this);
-  }
-
-  handleSelectionChange = prop => event => {
-    this.setState({ [prop]: event.target.value });
+    this.updateFilteredView = this.updateFilteredView.bind(this);
   }
 
   fetchMonsterNames() {
@@ -76,11 +77,27 @@ class MonsterSelector extends Component {
      .then(responseData => {                                   //From the JSON, pull out the stuff we need.
        this.setState(
          {
-           monsterNamesObject: responseData.results
+           monsterNamesObject: responseData.results,
+           monsterNamesSelected: responseData.results
          }
        )
      })
    }
+
+   updateFilteredView = (query) => {
+     this.setState(
+       {
+         query: query,
+         monsterNamesSelected : this.state.monsterNamesObject.filter(row =>
+           row['name'].toLowerCase().includes(this.state.query.toLowerCase())
+         )
+       }
+     )
+   }
+
+  handleSelectionChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  }
 
    handleMonsterSelect(contents) {
      let monsterId = parseInt(contents.target.parentNode.childNodes[1].textContent); //Super hacky, but the only way I know as of now to get row data.
@@ -104,6 +121,13 @@ class MonsterSelector extends Component {
     return (
       <div className = 'monster-selector'>
         <Paper className={classes.root}>
+          <TextField
+            hintText='Query'
+            floatingLabelText='Search'
+            value={this.state.query}
+            onChange={event => {this.updateFilteredView(event.target.value)} }
+            floatingLabelFixed
+          />
           <Table className={classes.table} >
             <TableHead>
               <TableRow>
@@ -112,17 +136,24 @@ class MonsterSelector extends Component {
                 <TableCell>Import</TableCell>
               </TableRow>
             </TableHead>
+            <MonsterList
+              monsters = {this.state.monsterNamesSelected}
+              handleMonsterSelect = {this.handleMonsterSelect}
+            />
+            {/*
             <TableBody>
-              {this.state.monsterNamesObject.map(monster => {
+              {this.state.monsterNamesSelected.map(monster => {
                 return(
                   <TableRow key={monster.name}>
                     <TableCell>{monster.name}</TableCell>
                     <TableCell>{monster.url.slice("http://www.dnd5eapi.co/api/monsters/".length)}</TableCell>
                     <TableCell onClick={this.handleMonsterSelect}>[Import Button]</TableCell>
                   </TableRow>
-                )
-              })}
+                )}
+              )
+            }
             </TableBody>
+          */}
           </Table>
         </Paper>
       </div>
