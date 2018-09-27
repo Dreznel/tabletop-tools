@@ -24,7 +24,7 @@ class MonsterHitPointTracker extends React.Component {
 
   render() {
     return (
-      <div className = "hp-tracker">
+      <div className = "monster-hp-tracker">
         <p> HP for <b>{ this.props.monsterList[this.props.monsterIndex].name }</b>:
           {  this.props.monsterList[this.props.monsterIndex].currentHp }
           /

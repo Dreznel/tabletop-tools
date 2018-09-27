@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import './less/Sidebar.css';
+import './css/Sidebar.css';
 
 const routes = [
   {
