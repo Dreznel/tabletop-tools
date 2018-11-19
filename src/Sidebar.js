@@ -27,6 +27,9 @@ const TabletopToolsSidebar = () => (
           <li>
             <Link to="/hp-tracker">HP Tracker</Link>
           </li>
+          <li>
+            <Link to="/mapping-tool">Mapping Tool</Link>
+          </li>
         </ul>
 
         {routes.map((route, index) => (

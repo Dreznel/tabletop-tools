@@ -3,10 +3,6 @@
 }
 .monster-selector {
   float: left;
-  background-color: #e0ecff;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
 }
 .hp-tracker {
   display: flex;
